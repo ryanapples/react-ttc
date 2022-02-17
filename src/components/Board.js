@@ -2,8 +2,22 @@ import React from 'react';
 import Square from './Square';
 
 class Board extends React.Component {
+  state = { squares: Array(9).fill(null) };
+
+  handleClick(i) {
+    console.log(i);
+    const squares = this.state.squares.slice();
+    squares[i] = 'X';
+    this.setState({ squares: squares });
+  }
+
   renderSquare(i) {
-    return <Square />;
+    return (
+      <Square
+        value={this.state.squares[i]}
+        onClick={() => this.handleClick(i)}
+      />
+    );
   }
 
   render() {
